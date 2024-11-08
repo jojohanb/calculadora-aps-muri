@@ -24,4 +24,5 @@ teclado.definaCpu(cpu)
 // //cpu.definaTela(tela);
 // new TestadorCpu(cpu).teste123Soma456(); //TESTE
 // new TestadorCpu(cpu).teste12Soma34Soma56(); //TESTE
- new TestadorCpu(cpu).testeRaiz();
+//  new TestadorCpu(cpu).testeRaiz();
+new TestadorCpu(cpu).testeNumeroDecimal(); //GI PASSOU AQUI----

@@ -10,13 +10,13 @@ export class TestadorTela {
     this.tela = tela;
   }
 
-  testeTodosNúmeros() {
-    this.tela.limpe();
-    console.log("= Testando todos os dígitos ===========================");
-    Object.keys(Digito).forEach((element) => {
-      if (Number(element)) this.tela.mostre(Number(element));
-    });
-  }
+  // testeTodosNúmeros() {
+  //   this.tela.limpe();
+  //   console.log("= Testando todos os dígitos ===========================");
+  //   Object.keys(Digito).forEach((element) => {
+  //     if (Number(element)) this.tela.mostre(Number(element));
+  //   });
+  // }
 }
 
 export class TestadorCpu {
@@ -25,37 +25,52 @@ export class TestadorCpu {
     this.cpu = cpu;
   }
 
-  teste123Soma456() {
-    console.log("= Testando 123 + 456 ===========================");
-    [Digito.UM, Digito.DOIS, Digito.TRÊS].forEach((element) => {
-      this.cpu.recebaDigito(element);
-    });
-    this.cpu.recebaOperacao(Operação.SOMA);
-    [Digito.QUATRO, Digito.CINCO, Digito.SEIS].forEach((element) => {
-      this.cpu.recebaDigito(element);
-    });
-    this.cpu.recebaControle(Controle.IGUAL);
-  }
+  // teste123Soma456() {
+  //   console.log("= Testando 123 + 456 ===========================");
+  //   [Digito.UM, Digito.DOIS, Digito.TRÊS].forEach((element) => {
+  //     this.cpu.recebaDigito(element);
+  //   });
+  //   this.cpu.recebaOperacao(Operação.SOMA);
+  //   [Digito.QUATRO, Digito.CINCO, Digito.SEIS].forEach((element) => {
+  //     this.cpu.recebaDigito(element);
+  //   });
+  //   this.cpu.recebaControle(Controle.IGUAL);
+  // }
 
-  teste12Soma34Soma56() {
-    console.log("= Testando 12 + 34 + 56 ===========================");
-    [Digito.UM, Digito.DOIS].forEach((element) => {
-      this.cpu.recebaDigito(element);
-    });
-    this.cpu.recebaOperacao(Operação.SOMA);
-    [Digito.TRÊS, Digito.QUATRO].forEach((element) => {
-      this.cpu.recebaDigito(element);
-    });
-    this.cpu.recebaOperacao(Operação.SOMA);
-    [Digito.CINCO, Digito.SEIS].forEach((element) => {
-      this.cpu.recebaDigito(element);
-    });
-    this.cpu.recebaControle(Controle.IGUAL);
-  }
-  testeRaiz(){
-    console.log("teste raiz 4");
-    this.cpu.recebaDigito(Digito.CINCO)
-    this.cpu.recebaOperacao(Operação.RAIZ_QUADRADA)
+  // teste12Soma34Soma56() {
+  //   console.log("= Testando 12 + 34 + 56 ===========================");
+  //   [Digito.UM, Digito.DOIS].forEach((element) => {
+  //     this.cpu.recebaDigito(element);
+  //   });
+  //   this.cpu.recebaOperacao(Operação.SOMA);
+  //   [Digito.TRÊS, Digito.QUATRO].forEach((element) => {
+  //     this.cpu.recebaDigito(element);
+  //   });
+  //   this.cpu.recebaOperacao(Operação.SOMA);
+  //   [Digito.CINCO, Digito.SEIS].forEach((element) => {
+  //     this.cpu.recebaDigito(element);
+  //   });
+  //   this.cpu.recebaControle(Controle.IGUAL);
+  // }
+  // testeRaiz(){
+  //   console.log("teste raiz 4");
+  //   this.cpu.recebaDigito(Digito.CINCO)
+  //   this.cpu.recebaOperacao(Operação.RAIZ_QUADRADA)
     
+  // }
+
+
+
+
+
+  // TESTES DA GII ---------------------------------------------
+  // TESTE DOS DECIMAIS
+  testeNumeroDecimal() {
+    console.log("Teste Números Decimais");
+    this.cpu.recebaDigito(Digito.SETE); // 1
+    this.cpu.recebaDigito(Digito.SEIS); // 1
+    this.cpu.recebaControle(Controle.SEPARADOR_DECIMAL); // Adiciona separador decimal
+    this.cpu.recebaDigito(Digito.CINCO);
+    this.cpu.recebaDigito(Digito.QUATRO) // 5
   }
 }

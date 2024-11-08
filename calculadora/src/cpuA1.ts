@@ -57,14 +57,20 @@ export default class CpuA1 implements Cpu {
                 break
         }
     }
-    private convertaDigitosEmNumero(digitos:Digito[], sinal: Sinal):number{
+    private convertaDigitosEmNumero(digitos:Digito[], sinal: Sinal, posicaoSeparadorDecimal : number ):number{ //GI PASSOU AQUI-----------------
         //multiplica por 10 e soma o novo digito
         let r = 0
         digitos.forEach(digito => {
             r = r * 10 +digito
         });
-        return r * (sinal==Sinal.POSITIVO?1:-1)
+        r= r * (sinal==Sinal.POSITIVO?1:-1) //GI PASSOU AQUI---------------------
+        if(posicaoSeparadorDecimal){
+            return r/ (10 ** (digitos.length - posicaoSeparadorDecimal));
+        } else {
+            return r
+        }
     }
+
     private convertaNumeroEmDigitos(numero: number):Digito[]{
         let valor: string = String(numero)
 
@@ -88,8 +94,8 @@ export default class CpuA1 implements Cpu {
         });
     }
     private tratarIGUAL() {
-        const numero1 = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1)
-        const numero2 = this.convertaDigitosEmNumero(this.digitosArmazenados2, this.sinal2)
+        const numero1 = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1, this.separadorDecimalpos1) //GI PASSOU AQUI-------
+        const numero2 = this.convertaDigitosEmNumero(this.digitosArmazenados2, this.sinal2, this.separadorDecimalpos2) //GI PASSOU AQUI --------
         let resultado = 0
         if (this.operacao === Operação.SOMA){
             resultado = numero1 + numero2
@@ -114,9 +120,9 @@ export default class CpuA1 implements Cpu {
 
         let numero;
         if(this.operacao === undefined){
-            numero = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1)
+            numero = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1, this.separadorDecimalpos1) //GI PASSOU AQUI ------
         }else{
-            numero = this.convertaDigitosEmNumero(this.digitosArmazenados2, this.sinal2)
+            numero = this.convertaDigitosEmNumero(this.digitosArmazenados2, this.sinal2, this.separadorDecimalpos2) //GI PASSOU AQUI ------
         }
 
         if (numero >= 0) {
@@ -138,10 +144,16 @@ export default class CpuA1 implements Cpu {
     }
     private tratarPONTO(){
         if (this.operacao === undefined){
-            this.separadorDecimalpos1 = this.digitosArmazenados1.length
+            if(!this.separadorDecimalpos1){ //GI PASSOU AQUI --------
+                this.separadorDecimalpos1 = this.digitosArmazenados1.length;
+                this.tela?.mostreSeparadorDecimal()
+            }
         }
         else{
-            this.separadorDecimalpos2 = this.digitosArmazenados2.length
+            if (this.separadorDecimalpos2){
+                this.separadorDecimalpos2 = this.digitosArmazenados2.length;
+                this.tela?.mostreSeparadorDecimal()
+            }
         }
     }
     tratarATIVAÇÃO_LIMPEZA_ERRO() {

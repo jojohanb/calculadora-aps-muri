@@ -6,6 +6,7 @@ export default class DisplayA1 implements Tela {
     mostreSinal(sinal: Sinal): void {
         console.log(sinal==Sinal.NEGATIVO?"-":"")
     }
+    
     mostreMemoria(): void {
         throw new Error("Method not implemented.")
     }
@@ -16,6 +17,7 @@ export default class DisplayA1 implements Tela {
         console.log(digito)
     }
   //mostrar separador decimal
+  
 
     limpe(): void {
         // console.clear()
