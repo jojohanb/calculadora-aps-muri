@@ -2,7 +2,7 @@
     "name": "calculadora-aps-muri",
     "version": "1.0.0",
     "scripts": {
-      "start": "node your-start-file.js"
+      "start": "npx nodemon ./src/index.ts"
     },
     "dependencies": {
     }
