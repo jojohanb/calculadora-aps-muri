@@ -9,6 +9,10 @@ export default class CpuA1 implements Cpu {
     separadorDecimalpos2 : number = 0;
     sinal1: Sinal = Sinal.POSITIVO;
     sinal2: Sinal = Sinal.POSITIVO;
+
+    hitoricoControle: Controle | undefined = undefined; //TESTE
+
+
     
     recebaDigito(digito: Digito): void {
         // Armazenar o digito
@@ -36,6 +40,23 @@ export default class CpuA1 implements Cpu {
             this.tratarRAIZ()
             return
         }
+
+
+        if (Operação.PERCENTUAL){
+            this.calcularPorcentagem();
+            break;
+
+        } else {
+            if( this.operacao!= undefined && this.digitosArmazenados2.length > 0 ){
+            this.tratarIGUAL();
+            }
+            this.operacao = Operação; 
+            break;
+
+        }
+        this.hitoricoControle = undefined;
+
+
         if(operação && this.digitosArmazenados1.length){
             this.recebaControle(Controle.IGUAL)
         }
