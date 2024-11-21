@@ -16,7 +16,6 @@ export default class DisplayA1 implements Tela {
     mostre(digito: Digito): void {
         console.log(digito)
     }
-  //mostrar separador decimal
   
 
     limpe(): void {

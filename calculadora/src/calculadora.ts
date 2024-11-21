@@ -60,12 +60,15 @@ export interface Cpu {
   reinicie(): void;
 
   definaTela(tela: Tela | undefined): void;
-  obtenhaTela(): Tela | undefined;
+  // obtenhaTela(): Tela | undefined;
+  obtenhaTela(): Tela;
+
 }
 
 export interface Calculadora {
   definaTela(tela: Tela | undefined): void;
-  obtenhaTela(): Tela | undefined;
+  // obtenhaTela(): Tela | undefined;
+  obtenhaTela(): Tela;
 
   definaCpu(cpu: Cpu | undefined): void;
   obtenhaCpu(): Cpu | undefined;
