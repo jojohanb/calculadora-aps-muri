@@ -123,33 +123,24 @@ export class TestadorCpu {
   }
 
   testePorcentagem() {
-    console.log("= Testando operação de porcentagem ===========================");
+    console.log("= Testando operação de porcentagem");
 
-    console.log("Entrada: 100 + 10%");
 
     // Digitar o número 100
     this.cpu.recebaDigito(Digito.UM);
     this.cpu.recebaDigito(Digito.ZERO);
     this.cpu.recebaDigito(Digito.ZERO);
 
-    // Operação de soma
     this.cpu.recebaOperacao(Operação.SOMA);
 
-    // Digitar o número 10
-    this.cpu.recebaDigito(Digito.UM);
+    this.cpu.recebaOperacao(Operação.PERCENTUAL);
+    this.cpu.recebaDigito(Digito.CINCO);
     this.cpu.recebaDigito(Digito.ZERO);
 
-    // Aplicar porcentagem
-    this.cpu.recebaOperacao(Operação.PERCENTUAL);
+    this.cpu.recebaControle(Controle.IGUAL);
 
-    // Não é necessário pressionar igual neste caso, pois o cálculo deve ser automático
-    // Caso precise do controle de IGUAL:
-    // this.cpu.recebaControle(Controle.IGUAL);
 
-    console.log("Resultado esperado: 110");
-
-    // Exibir o resultado obtido na tela
-    console.log("Resultado obtido: ", this.cpu.obtenhaTela().toString());
+    // console.log("Resultado obtido: ", this.cpu.obtenhaTela().toString());
 }
 
 

@@ -53,7 +53,6 @@ export default class CpuA1 implements Cpu {
 
    
     recebaControle(controle: Controle): void {
-        // Se o controle for para ligar a calculadora então chama o método interno que trata a ativação limpeza erro
         switch(controle){
             case Controle.ATIVAÇÃO_LIMPEZA_ERRO:
                 this.tratarATIVAÇÃO_LIMPEZA_ERRO()
@@ -66,9 +65,9 @@ export default class CpuA1 implements Cpu {
                 break
             case Controle.MEMÓRIA_LEITURA_LIMPEZA:
                 if (this.historicoControle === Controle.MEMÓRIA_LEITURA_LIMPEZA) {
-                this.memoriaLimpeza(); // Limpa a memoria na segunda vez 
+                this.memoriaLimpeza(); 
             }   else {
-                this.memoriaLeitura(); // Lê a memria na primeira vez
+                this.memoriaLeitura(); 
             }
             break;
         }
@@ -129,10 +128,10 @@ export default class CpuA1 implements Cpu {
             if (numero2 !== 0) {
                 resultado = numero1 / numero2;
             } else {
-                resultado = 0; // Ou qualquer valor padrão, caso você prefira não fazer nada
+                resultado = 0; 
             }
         } else if (this.operacao === Operação.PERCENTUAL) {
-            resultado = (numero1 * numero2) / 100; // Para garantir que o percentual seja tratado também
+            resultado = (numero1 * numero2) / 100; 
         }
     
         this.digitosArmazenados1 = this.convertaNumeroEmDigitos(resultado);
@@ -185,7 +184,8 @@ export default class CpuA1 implements Cpu {
         }
     }
 
-    private tratarPERCENTUAL() {
+
+    private tratarPERCENTUAL(): void {
         const numero1 = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1, this.separadorDecimalpos1);
         let numero2 = this.operacao === undefined 
             ? 0 
@@ -193,37 +193,24 @@ export default class CpuA1 implements Cpu {
     
         let resultado: number;
     
-        // Calcular o percentual corretamente
         if (this.operacao === Operação.PERCENTUAL) {
-            resultado = numero1 + (numero1 * numero2 / 100); // Adicionando o percentual ao número
+            resultado = numero1 * (numero2 / 100);
         } else {
-            resultado = numero1; // Se não for uma operação de percentual, o resultado é apenas o número1
+            resultado = numero1;
         }
     
-        // Verifique se o resultado é um valor válido
-        if (isNaN(resultado)) {
-            console.error("Erro no cálculo. Resultado inválido.");
-            return;
-        }
-    
-        // Exibe o resultado no console para depuração
         console.log("Resultado Calculado:", resultado);
     
-        // Converte o número para Digitos
         this.digitosArmazenados2 = this.convertaNumeroEmDigitos(resultado);
     
-        // Exibe o resultado na tela
         this.mostrarDigitos(this.digitosArmazenados2, this.sinal2);
     }
-   
     
-
     private memoriaMAIS(): void {
         const valorAtual = this.convertaDigitosEmNumero(this.digitosArmazenados1, this.sinal1, this.separadorDecimalpos1);
         this.memoria += valorAtual;
-        this.tela?.mostreMemoria(); // Indica que a mmoria tem um valor armazenado
+        this.tela?.mostreMemoria(); 
         this.historicoControle = Controle.IGUAL;
-        //this.recebaControle(Controle.IGUAL )
     }
 
     private memoriaMENOS(): void {
@@ -251,10 +238,8 @@ export default class CpuA1 implements Cpu {
         this.historicoControle = Controle.MEMÓRIA_LEITURA_LIMPEZA;
     }
     tratarATIVAÇÃO_LIMPEZA_ERRO() {
-        // LImpe a tela 
         this.tela?.limpe()
 
-        // Mostre o zero na tela
         this.tela?.mostre(Digito.ZERO)
     }
     reinicie(): void {
